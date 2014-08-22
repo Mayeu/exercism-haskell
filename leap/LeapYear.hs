@@ -2,5 +2,5 @@ module LeapYear
 ( isLeapYear ) where
 
 isLeapYear :: Int -> Bool
-isLeapYear y = 4 `isADivOf` y && ( not (100 `isADivOf` y) || 400 `isADivOf` y)
-    where isADivOf x y = y `mod` x == 0
+isLeapYear year = isDivisor 4 && ( not (isDivisor 100) || isDivisor 400)
+    where isDivisor x = year `mod` x == 0
