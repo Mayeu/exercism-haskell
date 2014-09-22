@@ -11,7 +11,5 @@ responseFor s
   where
     silence  = all isSpace s
     filtered = filter isAlpha s
-    yell     = if filtered == ""
-                 then False
-                 else all isUpper filtered
+    yell     = (filtered /= "") && all isUpper filtered
     question = last s == '?'
