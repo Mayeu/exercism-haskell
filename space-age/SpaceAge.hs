@@ -10,18 +10,16 @@ data Planet = Mercury
             | Neptune
 
 ageOn :: Planet -> Int -> Float
-ageOn planet seconds = (fromIntegral seconds) / (secondsPerYear planet)
+ageOn planet seconds = fromIntegral seconds / secondsPerYear planet
 
 secondsPerYear :: Planet -> Float
-secondsPerYear planet =
-  case planet of
-       Mercury -> 0.2408467   * earthPeriod
-       Venus   -> 0.61519726  * earthPeriod
-       Earth   -> earthPeriod
-       Mars    -> 1.8808158   * earthPeriod
-       Jupiter -> 11.862615   * earthPeriod
-       Saturn  -> 29.447498   * earthPeriod
-       Uranus  -> 84.016846   * earthPeriod
-       Neptune -> 164.79132   * earthPeriod
-  where
-    earthPeriod = 31557600
+secondsPerYear planet = earthPeriod * case planet of
+   Mercury -> 0.2408467
+   Venus   -> 0.61519726
+   Earth   -> 1
+   Mars    -> 1.8808158
+   Jupiter -> 11.862615
+   Saturn  -> 29.447498
+   Uranus  -> 84.016846
+   Neptune -> 164.79132
+  where earthPeriod = 31557600
