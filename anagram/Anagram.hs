@@ -6,17 +6,10 @@ import Data.Char (toLower)
 anagramsFor :: String -> [String] -> [String]
 anagramsFor word = filter anagrams
   where
-    lower = map toLower
+    lower      = map toLower
+    lowerWord  = lower word
+    sortedWord = sort lowerWord
     anagrams s
-      | lower word == lower s = False
-      | (sort . lower) word == (sort . lower) s = True
-      | otherwise = False
-
-{-
--- Another possible version
-anagramsFor :: String -> [String] -> [String]
-anagramsFor word = filter anagrams
-  where lower = map toLower
-        anagrams s = (lower word /= lower s)
-                  && sort (lower word) == sort (lower s)
--}
+      | lowerWord == lower s           = False
+      | sortedWord == (sort . lower) s = True
+      | otherwise                      = False
