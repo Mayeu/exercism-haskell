@@ -7,9 +7,8 @@ anagramsFor :: String -> [String] -> [String]
 anagramsFor word = filter anagrams
   where
     lower      = map toLower
-    lowerWord  = lower word
-    sortedWord = sort lowerWord
+    (lw, sw)   = (lower word, sort lw)
     anagrams s
-      | lowerWord == lower s           = False
-      | sortedWord == (sort . lower) s = True
-      | otherwise                      = False
+      | lw == lower s          = False
+      | sw == (sort . lower) s = True
+      | otherwise              = False
