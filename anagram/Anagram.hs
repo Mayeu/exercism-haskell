@@ -4,10 +4,9 @@ import Data.List (sort)
 import Data.Char (toLower)
 
 anagramsFor :: String -> [String] -> [String]
-anagramsFor word = filter anagrams
-  where
-    normalise s = let lowercase = map toLower s in (lowercase, sort lowercase)
-    (lw, sw)    = normalise word
-    anagrams s  = let isDifferent = lw /= fst (normalise s)
-                      isAnagram   = sw == snd (normalise s)
-                  in  isDifferent && isAnagram
+anagramsFor word = filter (anagram . normalise)
+  where normalise s = let lowcase = map toLower s in  (lowcase, sort lowcase)
+        (lw, sw)    = normalise word
+        anagram (ls, ss) = isDifferent && isAnagram
+          where isDifferent = lw /= ls
+                isAnagram   = sw == ss
